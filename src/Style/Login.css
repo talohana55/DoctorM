@@ -1,0 +1,38 @@
+.login-container {
+  width: 22rem;
+  height: 20rem;
+  background-color: rgb(158, 188, 226);
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  padding: 1rem 1rem 5.5rem;
+}
+.header {
+  margin: 3.5rem auto;
+}
+.inputs1 {
+  width: auto;
+  height: rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 5px;
+}
+.enter {
+  width: 100%;
+  text-align: center;
+}
+.enter-btn {
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5%;
+  background-color: rgb(42, 119, 206);
+  font-weight: 700;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  margin: 5px 10px 10px;
+}

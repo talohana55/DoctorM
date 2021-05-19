@@ -1,0 +1,30 @@
+.container {
+  width: 20rem;
+  height: 20rem;
+  background-color: rgb(158, 188, 226);
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.header {
+  font-weight: 700;
+  font-family: sans-serif;
+  color: black;
+}
+.btn {
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5%;
+  background-color: rgb(42, 119, 206);
+  font-weight: 700;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  margin: 5px 10px 10px;
+}

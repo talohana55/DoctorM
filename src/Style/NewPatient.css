@@ -1,0 +1,117 @@
+.newPatient-container {
+  width: 56rem;
+  background-color: #a5cbe2;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 4rem;
+}
+.footerNewPatient {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+    padding: 0rem 4rem 0rem 6rem;
+
+}
+.title-form-patient {
+  margin: 2rem 15rem;
+}
+.input-div-personal {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0rem 1rem 1rem;
+}
+
+.input-div-medical {
+  margin: 0rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0rem 1rem 1rem;
+}
+.input { 
+
+  margin: 4px 4px;
+  height: 1rem;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+.input-med {
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  margin: 5px 80px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 20px;
+}
+.category {
+  font-weight: 700;
+  font-family: sans-serif;
+}
+.question {
+  font-weight: 700;
+  font-family: sans-serif;
+}
+.add-btn-div {
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0rem 2rem 1rem;
+}
+.add-btn {
+  width: 9rem;
+  height: 2rem;
+  border-radius: 5%;
+  background-color: rgb(42, 119, 206);
+  font-weight: 700;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  margin: 5px 10px 10px;
+}
+.add-btn:hover {
+  background-color: #3e8e41;
+}
+
+.add-btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+table,
+th,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+td {
+  text-align: center;
+  width: 12rem;
+}
+th {
+  text-align: center;
+}
+.med-personal-table {
+  width: 700px;
+}
+.radio-input {
+  width: 1rem;
+}
+.question {
+  width: 20rem;
+}

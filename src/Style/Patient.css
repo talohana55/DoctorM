@@ -1,0 +1,71 @@
+.patient-container {
+  width: 20rem;
+  background-color: rgb(158, 188, 226);
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 4rem;
+}
+.div-personal-info {
+  margin: 10px 0px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  /* padding: 2rem 2rem 1rem; */
+}
+.hr-lineStop {
+  width: 85%;
+  border: 2px solid #2a77ce;
+  border-radius: 5px;
+}
+.diag {
+  width: 1.5rem;
+}
+.diag2 {
+  width: 1.7rem;
+  height: 2nn0px;
+}
+.id {
+  text-align: right;
+}
+.btn-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.show-tables {
+  padding: 0.5rem 10px 10px;
+}
+.btn1 {
+  width: 9rem;
+  height: 1.7rem;
+  border-radius: 5%;
+  background-color: rgb(42, 119, 206);
+  font-weight: 400;
+  color: white;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 3px 2px;
+  margin: 5px 10px 10px;
+  text-decoration: none;
+  display: flex;
+  cursor: pointer;
+}
+.btn1:hover {
+  background-color: #3e8e41;
+}
+.pdf-btn{
+    margin: 10px;
+    width: 2.5rem;
+    border-radius: 80px;
+    background-color:#bb2e3e ;
+    font-weight: 700;
+}
+.btn1:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
