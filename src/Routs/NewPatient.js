@@ -107,8 +107,8 @@ const NewPatient = () => {
           <img src={logo} alt="Logo" className="logo" />
           <h3 className="title-form-patient">New Patient Form</h3>
         </div>
+        <h4 className="pers-dit-title"> Personal Details</h4>
         <div className="input-div-personal">
-          <h4>Personal Details</h4>
           <input
             type="text"
             className="input"
@@ -144,7 +144,7 @@ const NewPatient = () => {
         </div>
         <hr className="hr-line" />
         <div className="input-div-medical">
-        <h4>Medical Details</h4>
+          <h4>Medical Details</h4>
           <table>
             <thead>
               <tr>
