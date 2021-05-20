@@ -1,0 +1,111 @@
+/* Portrait */
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (min-width: 320px) {
+  .doctor-container {
+    width: 20.5rem;
+    background-color: #a5cbe2;
+    margin: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 1rem 1rem 2rem; */
+  }
+  .footer1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1px 5px 5px -5px;
+  }
+  .logo {
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .date {
+    width: 100%;
+    display: flex;
+    font-size: 8px;
+  }
+  .exit-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: flex-end;
+  }
+  .exit-btn {
+    height: 1rem;
+    width: 2rem;
+    text-decoration: none;
+    background-color: crimson;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: 700;
+    margin: 1px;
+  }
+  .hr-line {
+    width: 100%;
+    margin: 0rem auto;
+    border: 2px solid #2a77ce;
+    border-radius: 5px;
+  }
+  .doc-details {
+    width: 100%;
+    margin: 0rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    font-size: 10px;
+  }
+  .doctorData {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+  }
+  .logoDoc {
+    width: 1.5rem;
+    border-radius: 50%;
+  }
+  .buttons-div {
+    margin: 0rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 2rem 2rem 1rem; */
+  }
+  .btn {
+    width: 5rem;
+    height: 1.5rem;
+    border-radius: 5%;
+    background-color: rgb(42, 119, 206);
+    font-weight: 400;
+    color: white;
+    font-size: 10px;
+    outline: none;
+    border: none;
+    margin: 5px 10px 10px;
+    text-decoration: none;
+  }
+  .patients-list-div {
+    width: 95%;
+    border: 0.5px solid black;
+  }
+  .div-personal {
+    margin: 0px 2px 2px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    font-size: 10px;
+  }
+  .pdf-btn {
+    margin: 0px;
+    width: 1.8rem;
+    border-radius: 80px;
+    background-color: #bb2e3e;
+    font-weight: 700;
+    font-size: 7px;
+  }
+}

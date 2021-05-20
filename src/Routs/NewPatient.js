@@ -3,7 +3,7 @@ import "../Style/NewPatient.css";
 import { AppContext } from "../Context/ContextProvider";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import '../MediaQuery/QueryNewPatient.css'
 const logo = '/img/logo.png'
 
 const NewPatient = () => {
@@ -107,8 +107,8 @@ const NewPatient = () => {
           <img src={logo} alt="Logo" className="logo" />
           <h3 className="title-form-patient">New Patient Form</h3>
         </div>
-        <h4>Personal Details</h4>
         <div className="input-div-personal">
+          <h4>Personal Details</h4>
           <input
             type="text"
             className="input"
@@ -143,8 +143,8 @@ const NewPatient = () => {
           ></input>
         </div>
         <hr className="hr-line" />
-        <h4>Medical Details</h4>
         <div className="input-div-medical">
+        <h4>Medical Details</h4>
           <table>
             <thead>
               <tr>
@@ -155,7 +155,7 @@ const NewPatient = () => {
             <tbody>
               <tr>
                 <td className="category">white Blood Cells</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -169,7 +169,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">Neutrophil</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -183,7 +183,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">Lymphocytes</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -197,7 +197,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">Red Blood Cells</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -209,9 +209,9 @@ const NewPatient = () => {
                   ></input>
                 </td>
               </tr>
-              <tr>
+              <tr >
                 <td className="category">HCT</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -226,7 +226,7 @@ const NewPatient = () => {
 
               <tr>
                 <td className="category">Urea</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -240,7 +240,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">Hemoglobin</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -254,7 +254,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">Creatinine</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -268,7 +268,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">Iron</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -282,7 +282,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">High Density Lipoprotein</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"
@@ -296,7 +296,7 @@ const NewPatient = () => {
               </tr>
               <tr>
                 <td className="category">Alkaline Phosphatase</td>
-                <td>
+                <td className="value-inp">
                   <input
                     type="number"
                     className="input-med"

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "../Style/Doctor.css";
-import "../MediaQuery/mediaQuery.css";
+import "../MediaQuery/QueryDoctor.css";
 import { AppContext } from "../Context/ContextProvider";
 import { useHistory } from "react-router-dom";
 import Patient from "./Patient";
@@ -40,7 +40,7 @@ const Doctor = () => {
     if (currentDoctorData) {
       setCurrentDoctor(currentDoctorData);
     }
-  });
+  }, [setCurrentDoctor, setDoctors]);
 
 
   return (
