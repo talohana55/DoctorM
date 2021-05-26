@@ -26,6 +26,8 @@ Creatinine
 iron
 High Density Lipoprotein
 Alkaline Phosphatase
+### Medical questionnaire
+A medical questionnaire for a patient refers to the effect on the test findings.
 
 ## Patient Diagnosis
 Analysis of a patient's medical data in accordance with the criteria and normal amount of each test element from medical tests.
@@ -33,6 +35,12 @@ Analysis of a patient's medical data in accordance with the criteria and normal 
 ## Patient Treatment
 Recommended treatment for the patient is done by recommendation according to the various criteria, the patient receives a table of personalized recommended treatments.
 
+## System options
+-An existing database.
+-New users (Doctor) can be sign up.
+-Save / pull data to/from local storage.
+-Download a PDF file for information for patients.
+-update patients new data.
 
 
 ### `npm start`
