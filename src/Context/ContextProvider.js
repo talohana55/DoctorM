@@ -276,19 +276,27 @@ const ContextProvider = ({ children }) => {
       username.length < 6 ||
       username.length > 8
     ) {
+      alert("Username length Invalid!");
       flag = false;
     }
     return flag;
   };
   const currectPassword = (pass) => {
     let flag = true;
-    if (
-      pass.length < 8 ||
-      pass.length > 10 ||
-      !/\d/.test(pass) ||
-      !/[a-zA-Z]/g.test(pass) ||
-      !/[|\\/~^:,;?!&%$@*+]/.test(pass)
-    ) {
+    if (pass.length < 8 || pass.length > 10) {
+      alert("Password length Invalid!");
+      flag = false;
+    }
+    if (!/\d/.test(pass)) {
+      alert("Password must contain number!");
+      flag = false;
+    }
+    if (!/[a-zA-Z]/g.test(pass)) {
+      alert("Password must contain letter!");
+      flag = false;
+    }
+    if (!/[|\\/~^:,;?!&%$@*+]/.test(pass)) {
+      alert("Username must contain special symbol!");
       flag = false;
     }
     return flag;

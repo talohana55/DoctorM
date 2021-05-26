@@ -11,7 +11,7 @@ const Home = () => {
     >
       <h1 className="header">Medical Center</h1>
       <NavLink to="/signup">
-        <button className="btn">Sign in</button>
+        <button className="btn">Sign Up</button>
       </NavLink>
       <NavLink to="/login">
         <button className="btn">Log in</button>

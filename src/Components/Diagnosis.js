@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AppContext } from "../Context/ContextProvider";
-import "../Style/Diagnosis.css";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 const Diagnosis = (props) => {
@@ -54,9 +53,10 @@ const Diagnosis = (props) => {
   return (
     <div>
       <button
-        className="generatPDF-btn"
+        className="pdf-btn1"
         style={{
-          width: "2rem",
+          margin: "10px",
+          width: "2.5rem,",
           borderRadius: "80px",
           backgroundColor: "#bb2e3e",
           fontWeight: "700",

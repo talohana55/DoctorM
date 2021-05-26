@@ -7,8 +7,8 @@ import "../Style/SignUp.css";
 const SignUp = () => {
   const { addDoctor, doctors, currectUserName, currectPassword } =
     useContext(AppContext);
-
   const [error, setError] = useState(false);
+  const [errorRegisterd, setErrorRegisterd] = useState(false);
   let history = useHistory();
   const [signupForm, setSignupForm] = useState({
     userName: "",
@@ -30,28 +30,30 @@ const SignUp = () => {
     debugger;
     e.preventDefault();
     let flag = true;
-    if (
-      !currectUserName(signupForm.userName) ||
-      !currectPassword(signupForm.password) ||
-      signupForm.id.length !== 9 ||
-      signupForm.license.length !== 6
-    ) {
+    if (!currectUserName(signupForm.userName) || !currectPassword(signupForm.password)) {
       setError(true);
       flag = false;
-    } else {
-      setError(false);
-      flag = true;
+    } else if (signupForm.license.length !== 6) {
+      alert("Doctor license must contain 6 numbers!");
+      setError(true);
+      flag = false;
     }
+    else if (signupForm.id.length !== 9) {
+      alert("Doctor ID must contain 9 numbers!");
+      setError(true);
+      flag = false;
+    }
+
     for (let i = 0; i < doctors.length; i++) {
-      if (signupForm.userName === doctors[i]) {
-        setError(true);
+      if (signupForm.userName === doctors[i].userName) {
+        setErrorRegisterd(true);
         flag = false;
-        alert("Doctor already registerd!");
-        history.push("/login");
-      } else {
-        setError(false);
-        flag = true;
+        // history.push("/login");
       }
+      // else {
+      //   setErrorRegisterd(false);
+      //   flag = true;
+      // }
     }
     if (flag) {
       addDoctor(signupForm);
@@ -66,10 +68,10 @@ const SignUp = () => {
   return (
     <>
       <form className="signup-container" onSubmit={handleSubmit} noValidate style={{ backgroundImage: `url(${bg})` }}>
-        <h2 style={{ color: "white" }}>Sign up</h2>
+        <h2 className="headline">Sign up</h2>
         <div className="inputs1">
           <input
-            className="inputDetails"
+            className="inputDetails1"
             type="text"
             placeholder="User Name"
             name="userName"
@@ -78,7 +80,7 @@ const SignUp = () => {
           />
 
           <input
-            className="inputDetails"
+            className="inputDetails1"
             type="password"
             placeholder="Password"
             name="password"
@@ -86,7 +88,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
           <input
-            className="inputDetails"
+            className="inputDetails1"
             type="text"
             placeholder="Full Name"
             name="name"
@@ -94,7 +96,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
           <input
-            className="inputDetails"
+            className="inputDetails1"
             type="text"
             placeholder="ID"
             name="id"
@@ -102,7 +104,7 @@ const SignUp = () => {
             onChange={handleChange}
           />
           <input
-            className="inputDetails"
+            className="inputDetails1"
             type="text"
             placeholder="License Number"
             name="license"
@@ -110,7 +112,9 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </div>
-        {error && <p>Invalid Details...</p>}
+        {error && <p className="error-msg">Invalid Details...</p>}
+        {errorRegisterd && <p className="error-msg">Doctor already registerd!</p>}
+
         <div className="enter">
           <input type="submit" value="Register" className="enter-btn" />
         </div>

@@ -56,7 +56,7 @@ const Login = () => {
   const bg = '/img/medicalLogin.jpg'
   return (
     <form className="login-container" onSubmit={handleSubmit} noValidate style={{ backgroundImage: `url(${bg})` }}>
-     
+
       <h2 className="header">Login</h2>
       <div className="inputs1">
         <input
@@ -76,7 +76,7 @@ const Login = () => {
           onChange={handleChange}
         />
       </div>
-      {error && <p>Invalid Details...</p>}
+      {error && <p className="error-msg">Invalid Details...</p>}
       <div className="enter">
         <input type="submit" value="Enter" className="enter-btn" />
       </div>

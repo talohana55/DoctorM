@@ -1,24 +1,45 @@
 .login-container {
   width: 22rem;
-  height: 20rem;
+  height: 25rem;
   background-color: rgb(158, 188, 226);
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
- 
+
   padding: 1rem 1rem 5.5rem;
 }
 .header {
-  margin: 3.5rem auto;
+  font-weight: 900;
+  font-size: 30px;
+  margin: 6rem 0rem 1.5rem 0rem;
+  font-family: sans-serif;
 }
 .inputs1 {
   width: auto;
-  height: rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 5px 5px;
+}
+.inputDetails {
+  width: 11rem;
+  background-color: #60a3bd;
+    margin: 6px auto;
+  height: 24px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  font-size: 700;
+  font-size: 16px;
+  opacity: 1; /* Firefox */
 }
 .enter {
   width: 100%;

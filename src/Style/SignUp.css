@@ -1,6 +1,6 @@
 .signup-container {
   width: 22rem;
-  height: 20rem;
+  height: 28rem;
   background-color: rgb(158, 188, 226);
   margin: 2rem auto;
   display: flex;
@@ -15,8 +15,11 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  /* align-items: left; */
   text-align: left;
+}
+.headline {
+  font-size: 36px;
+  color: white;
 }
 .info {
   border-radius: 80%;
@@ -27,11 +30,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5px 5px;
+  margin: 7px 7px;
 }
-.inputDetails {
+.inputDetails1 {
   margin: 6px auto;
-  height: 1rem;
+  height: 22px;
   border-radius: 20px;
   border: none;
   outline: none;
@@ -44,7 +47,7 @@
   text-align: center;
 }
 .enter-btn {
-  width: 5rem;
+  width: 7rem;
   height: 2rem;
   border-radius: 5%;
   background-color: rgb(42, 119, 206);
@@ -64,4 +67,9 @@
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+.error-msg {
+  font-weight: 700;
+  font-size:16px;
+  color: red;
 }
