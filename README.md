@@ -1,10 +1,39 @@
-# Getting Started with Create React App
+# Doctor Managment System - React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Software that describes an interface for the ongoing management of doctors in front of patients.
+### APP Link: https://doctor-managment.netlify.app
+An existing user to use:
+userName:docTal12
+password:tal1234$$
 
-## Available Scripts
+## The purpose of the app
 
-In the project directory, you can run:
+The purpose of the amalgamation is to offer appropriate treatment to patients according to criteria and medical findings after a patient's medical examination.
+
+## Medical criteria
+
+Patient's medical findings rely on up - to - date medical information of the patient against criteria of medical examinations.
+
+### Medical Tests:
+white Blood Cells
+Neutrophil
+Lymphocytes
+Red Blood Cells
+HCT - The volume of red blood cells within the whole blood fluid.
+Urea
+Hemoglobin
+Creatinine
+iron
+High Density Lipoprotein
+Alkaline Phosphatase
+
+## Patient Diagnosis
+Analysis of a patient's medical data in accordance with the criteria and normal amount of each test element from medical tests.
+
+## Patient Treatment
+Recommended treatment for the patient is done by recommendation according to the various criteria, the patient receives a table of personalized recommended treatments.
+
+
 
 ### `npm start`
 
