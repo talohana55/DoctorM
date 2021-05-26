@@ -14,7 +14,7 @@ The purpose of the amalgamation is to offer appropriate treatment to patients ac
 
 Patient's medical findings rely on up - to - date medical information of the patient against criteria of medical examinations.
 
-### Medical Tests:
+### Medical Tests
 white Blood Cells
 Neutrophil
 Lymphocytes
