@@ -19,7 +19,7 @@ const ContextProvider = ({ children }) => {
           Neut: 333,
           Lymph: 234234,
           RBC: 100,
-          HCT: 232342,
+          HCT: 67,
           Urea: 1321,
           Hb: 3,
           CRT: 2331,
@@ -33,15 +33,15 @@ const ContextProvider = ({ children }) => {
           middleEastern: false,
         },
         {
-          patientName: "Shimi Cohen",
+          patientName: "Shimrit Cohen",
           id: "456456456",
           age: 70,
-          gender: "male",
+          gender: "fmale",
           WBC: 8000,
           Neut: 1200,
           Lymph: 900,
           RBC: 3,
-          HCT: 643,
+          HCT: 43,
           Urea: 50,
           Hb: 15,
           CRT: 2,
@@ -49,7 +49,7 @@ const ContextProvider = ({ children }) => {
           HDL: 20,
           AP: 100,
           surgerie: true,
-          sensitivity: false,
+          sensitivity: true,
           smoke: true,
           chronicDiseases: false,
           middleEastern: true,
@@ -72,7 +72,7 @@ const ContextProvider = ({ children }) => {
           Neut: 333,
           Lymph: 234234,
           RBC: 100,
-          HCT: 232342,
+          HCT: 23,
           Urea: 1321,
           Hb: 3,
           CRT: 2331,
@@ -94,7 +94,7 @@ const ContextProvider = ({ children }) => {
           Neut: 1200,
           Lymph: 900,
           RBC: 3,
-          HCT: 643,
+          HCT: 10,
           Urea: 50,
           Hb: 15,
           CRT: 2,
@@ -339,8 +339,8 @@ const ContextProvider = ({ children }) => {
     }
   };
   const testNeutrophil = (patient) => {
-    let minVal = (patient.Neut * 28) / 100;
-    let maxVal = (patient.Neut * 54) / 100;
+    let minVal = (patient.wbc * 28) / 100;
+    let maxVal = (patient.wbc * 54) / 100;
     let result = "";
     if (patient.Neut >= minVal && patient.Neut <= maxVal) {
       result = "Good";
@@ -358,8 +358,8 @@ const ContextProvider = ({ children }) => {
     }
   };
   const testLymph = (patient) => {
-    let minVal = (patient.Lymph * 36) / 100;
-    let maxVal = (patient.Lymph * 52) / 100;
+    let minVal = (patient.wbc * 36) / 100;
+    let maxVal = (patient.wbc * 52) / 100;
     let result = "";
     if (patient.Lymph >= minVal && patient.Lymph <= maxVal) {
       result = "Good";
@@ -394,23 +394,19 @@ const ContextProvider = ({ children }) => {
     }
   };
   const testHCT = (patient) => {
-    let maleMinVal = (patient.HCT * 37) / 100;
-    let maleMaxVal = (patient.HCT * 54) / 100;
-    let fmaleMinVal = (patient.HCT * 33) / 100;
-    let fmaleMaxVal = (patient.HCT * 47) / 100;
     let result = "";
     if (patient.gender === "male") {
-      if (patient.HCT >= maleMinVal && patient.HCT <= maleMaxVal) {
+      if (patient.HCT >= 37 && patient.HCT <= 54) {
         result = "Good";
-      } else if (patient.HCT < maleMinVal) {
+      } else if (patient.HCT < 37) {
         result = "Low";
       } else {
         result = "High";
       }
     } else {
-      if (patient.HCT >= fmaleMinVal && patient.HCT <= fmaleMaxVal) {
+      if (patient.HCT >= 33 && patient.HCT <= 47) {
         result = "Good";
-      } else if (patient.HCT < fmaleMinVal) {
+      } else if (patient.HCT < 33) {
         result = "Low";
       } else {
         result = "High";
