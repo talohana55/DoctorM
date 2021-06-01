@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../Context/ContextProvider";
-import '../Style/Login.css'
+import "../Style/Login.css";
 const Login = () => {
   const { doctors, addCurrentDoctor, currentDoctor } = useContext(AppContext);
   const [error, setError] = useState(false);
@@ -10,6 +10,7 @@ const Login = () => {
   const [loginForm, setLoginForm] = useState({
     userName: "",
     password: "",
+    id: "",
   });
 
   const handleChange = (e) => {
@@ -25,11 +26,12 @@ const Login = () => {
     e.preventDefault();
     let onList = false;
     let userObj = {};
-    if (loginForm.userName.length > 0 && loginForm.password.length > 0) {
+    if (loginForm.userName.length > 0 && loginForm.password.length > 0 && loginForm.id.length === 9) {
       for (let i = 0; i < doctors.length; i++) {
         if (
           loginForm.userName === doctors[i].userName &&
-          loginForm.password === doctors[i].password
+          loginForm.password === doctors[i].password &&
+          loginForm.id === doctors[i].id
         ) {
           onList = true;
           userObj = doctors[i];
@@ -53,10 +55,14 @@ const Login = () => {
   useEffect(() => {
     localStorage.setItem("Doctors", JSON.stringify(doctors));
   });
-  const bg = '/img/medicalLogin.jpg'
+  const bg = "/img/medicalLogin.jpg";
   return (
-    <form className="login-container" onSubmit={handleSubmit} noValidate style={{ backgroundImage: `url(${bg})` }}>
-
+    <form
+      className="login-container"
+      onSubmit={handleSubmit}
+      noValidate
+      style={{ backgroundImage: `url(${bg})` }}
+    >
       <h2 className="header">Login</h2>
       <div className="inputs1">
         <input
@@ -73,6 +79,14 @@ const Login = () => {
           placeholder="Password"
           name="password"
           value={loginForm.password}
+          onChange={handleChange}
+        />
+        <input
+          className="inputDetails"
+          type="number"
+          placeholder="ID"
+          name="id"
+          value={loginForm.id}
           onChange={handleChange}
         />
       </div>

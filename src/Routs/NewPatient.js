@@ -15,8 +15,11 @@ const NewPatient = () => {
     setCurrentDoctor,
   } = useContext(AppContext);
   const [error, setError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [idError, setIdError] = useState(false);
+  const [ageError, setAgeError] = useState(false);
+  const [genderError, setGenderError] = useState(false);
   const history = useHistory();
-
   const [patient, setPatient] = useState({
     patientName: "",
     id: "",
@@ -63,9 +66,7 @@ const NewPatient = () => {
     }
     setError(false);
   };
-
   const addPatientToDoctor = (doc, p) => {
-    debugger;
     let obj = {};
     let index = doctors.findIndex((obj) => doc.name === obj.name);
     obj = doctors[index];
@@ -76,40 +77,34 @@ const NewPatient = () => {
     setDoctors(temp);
     localStorage.setItem("Doctors", JSON.stringify(doctors));
   };
-  const updatePatientDetails = (p) => {
-    debugger;
-    var data = [...currentDoctor.patients];
-    var index = data.findIndex((obj) => obj.id === p.id);
-    data[index] = p;
-    currentDoctor.patients = data;
-    setDoctors(currentDoctor);
-    localStorage.setItem("Current-Doctor", JSON.stringify(currentDoctor));
-    localStorage.setItem("Doctors", JSON.stringify(doctors));
-    console.table(doctors);
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let flag = true;
     let patientOnList = false;
     if (checkIfPatientOnList(currentDoctor, patient)) {
       patientOnList = true;
-      updatePatientDetails(patient);
-      alert("Patient Updated!");
-      history.push("/doctor");
+      alert("Patient Already Exists!");
     }
     if (patientOnList === false) {
-      if (
-        patient.patientName === "" ||
-        patient.age < 1 ||
-        patient.gender === "" ||
-        patient.id.length !== 9
-      ) {
+      if (patient.patientName === "") {
         flag = false;
-        setError(true);
+        setNameError(true);
+      }
+      else if (patient.age < 0) {
+        flag = false;
+        setAgeError(true);
+
+      } else if (patient.gender !== "male" && patient.gender !== "female") {
+        flag = false;
+        setGenderError(true);
+
+      } else if (patient.id.length !== 9) {
+        flag = false;
+        setIdError(true);
       }
     }
     if (flag) {
-      console.log(currentDoctor);
       addPatientToDoctor(currentDoctor, patient);
       alert("Patient Added!");
       history.push("/doctor");
@@ -148,6 +143,7 @@ const NewPatient = () => {
             name="age"
             value={patient.age}
             onChange={handleChange}
+            min="0"
           ></input>
           <input
             type="text"
@@ -475,9 +471,12 @@ const NewPatient = () => {
           </table>
         </div>
         {error && <p>Please provid valid information.</p>}
-
+        {nameError && <p>Please provid valid Full Name.</p>}
+        {idError && <p>Please provid valid ID.</p>}
+        {ageError && <p>Please provid valid Age.</p>}
+        {genderError && <p>Please provid valid Gender(male/female).</p>}
         <div className="add-btn-div">
-          <input type="submit" value="Add/Update" className="add-btn" />
+          <input type="submit" value="Add" className="add-btn" />
           <NavLink to="/doctor">
             <button className="add-btn">Back</button>
           </NavLink>

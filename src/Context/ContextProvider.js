@@ -5,7 +5,7 @@ const ContextProvider = ({ children }) => {
   const [doctors, setDoctors] = useState([
     {
       name: "Tal ohana",
-      id: "1",
+      id: "789789789",
       license: 307833,
       userName: "docTal12",
       password: "tal1234$$",
@@ -41,7 +41,7 @@ const ContextProvider = ({ children }) => {
           patientName: "Shimrit Cohen",
           id: "456456456",
           age: 70,
-          gender: "fmale",
+          gender: "female",
           WBC: 8000,
           Neut: 1200,
           Lymph: 900,
@@ -68,7 +68,7 @@ const ContextProvider = ({ children }) => {
           patientName: "Dese Avera",
           id: "412486456",
           age: 22,
-          gender: "fmale",
+          gender: "female",
           WBC: 4600,
           Neut: 1380,
           Lymph: 1840,
@@ -91,11 +91,38 @@ const ContextProvider = ({ children }) => {
             treatment: "",
           }]
         },
+        {
+          patientName: "Dona Mccurtny Cohen",
+          id: "666999666",
+          age: 45,
+          gender: "female",
+          WBC: 2000,
+          Neut: 1200,
+          Lymph: 800,
+          RBC: 2,
+          HCT: 10,
+          Urea: 25,
+          Hb: 10,
+          CRT: 0.7,
+          Iron: 60,
+          HDL: 70,
+          AP: 30,
+          surgerie: false,
+          sensitivity: false,
+          smoke: false,
+          chronicDiseases: false,
+          middleEastern: true,
+          ethiopian: false,
+          diseases: [{
+            name: "",
+            treatment: "",
+          }]
+        },
       ],
     },
     {
       name: "Tali Tevlin",
-      id: "2",
+      id: "222222222",
       license: 546125,
       userName: "docTalit",
       password: "tal1234$$",
@@ -131,7 +158,7 @@ const ContextProvider = ({ children }) => {
           patientName: "Mira Azrayev",
           id: "789456123",
           age: 16,
-          gender: "fmale",
+          gender: "female",
           WBC: 8000,
           Neut: 1200,
           Lymph: 900,
@@ -194,8 +221,8 @@ const ContextProvider = ({ children }) => {
       treatment: "Complete rest while lying down, returning fluids to drinking",
     },
     {
-      name: "Dedicated",
-      treatment: "antibiotic infection",
+      name: "Infection",
+      treatment: "Dedicated Antibiotics",
     },
     {
       name: "Vitamin Deficiency",
@@ -266,6 +293,7 @@ const ContextProvider = ({ children }) => {
       name: "Malnutrition",
       treatment: "Coordinate an appointment with a nutritionist",
     },
+
   ]);
 
   const addToPersonalDisease = (DiseaseName, patient) => {
@@ -282,7 +310,7 @@ const ContextProvider = ({ children }) => {
   const checkIfPatientOnList = (doc, pat) => {
     let index = doctors.findIndex((obj) => obj.id === doc.id);
     for (let j = 0; j < doctors[index].patients.length; j++) {
-      if (doctors[index].patients[j].patientName === pat.patientName) {
+      if (doctors[index].patients[j].id === pat.id) {
         return true;
       }
     }
@@ -568,8 +596,8 @@ const ContextProvider = ({ children }) => {
   };
   const testIron = (patient) => {
     let result = "";
-    let fmaleMinVal = 48;
-    let fmaleMaxVal = 128;
+    let femaleMinVal = 48;
+    let femaleMaxVal = 128;
     if (patient.gender === "male") {
       if (patient.Iron >= 60 && patient.Iron <= 160) {
         result = "Good";
@@ -579,9 +607,9 @@ const ContextProvider = ({ children }) => {
         result = "High";
       }
     } else {
-      if (patient.Iron >= fmaleMinVal && patient.Iron <= fmaleMaxVal) {
+      if (patient.Iron >= femaleMinVal && patient.Iron <= femaleMaxVal) {
         result = "Good";
-      } else if (patient.Iron < fmaleMinVal) {
+      } else if (patient.Iron < femaleMinVal) {
         result = "Low";
       } else {
         result = "High";
@@ -709,7 +737,7 @@ const ContextProvider = ({ children }) => {
     }
     if (result === "High") {
       addToPersonalDisease("Cancer", patient);
-      addToPersonalDisease("Dedicated", patient);
+      addToPersonalDisease("Infection", patient);
       addToPersonalDisease("Blood disease", patient);
     } else if (result === "Low") {
       addToPersonalDisease("Cancer", patient);
@@ -726,11 +754,11 @@ const ContextProvider = ({ children }) => {
     } else if (patient.Neut < minVal) {
       result = "Low";
       addToPersonalDisease("Disorder of blood formation / blood cells", patient);
-      addToPersonalDisease("Dedicated", patient);
+      addToPersonalDisease("Infection", patient);
       addToPersonalDisease("Cancer", patient);
     } else {
       result = "High";
-      addToPersonalDisease("Dedicated", patient);
+      addToPersonalDisease("Infection", patient);
     }
     return result;
   };
@@ -744,7 +772,7 @@ const ContextProvider = ({ children }) => {
       result = "Low";
     } else {
       result = "High";
-      addToPersonalDisease("Dedicated", patient);
+      addToPersonalDisease("Infection", patient);
       addToPersonalDisease("Cancer", patient);
     }
     return result;
@@ -894,8 +922,8 @@ const ContextProvider = ({ children }) => {
   };
   const getValue_Iron = (patient) => {
     let result = "";
-    let fmaleMinVal = 48;
-    let fmaleMaxVal = 128;
+    let femaleMinVal = 48;
+    let femaleMaxVal = 128;
     if (patient.gender === "male") {
       if (patient.Iron >= 60 && patient.Iron <= 160) {
         result = "Good";
@@ -905,9 +933,9 @@ const ContextProvider = ({ children }) => {
         result = "High";
       }
     } else {
-      if (patient.Iron >= fmaleMinVal && patient.Iron <= fmaleMaxVal) {
+      if (patient.Iron >= femaleMinVal && patient.Iron <= femaleMaxVal) {
         result = "Good";
-      } else if (patient.Iron < fmaleMinVal) {
+      } else if (patient.Iron < femaleMinVal) {
         result = "Low";
       } else {
         result = "High";

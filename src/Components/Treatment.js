@@ -94,8 +94,8 @@ const Treatment = (props) => {
             <th>Disease</th>
             <th>Treatment Suggustion</th>
           </tr>
-
-          {props.value.diseases.length > 1 ? (props.value.diseases.map((dis, i) => {
+          
+          {props.value.diseases ? (props.value.diseases.map((dis, i) => {
             return (
               <tr key={i}>
                 <td className="category">{dis.name}</td>
@@ -103,9 +103,7 @@ const Treatment = (props) => {
               </tr>
             );
           })
-          ) : (
-            <span style={{ color: "red" }}> No Recomended Treatments</span>
-          )}
+          ) : <span style={{ color: "red" }}> No Recomended Treatments</span>}
         </table>
       )}
     </div>
