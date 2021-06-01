@@ -29,7 +29,7 @@ const MedicalInfo = (props) => {
           </tr>
           <tr>
             <td>HCT</td>
-            <td>{props.value.HCT}</td>
+            <td>{props.value.HCT}%</td>
           </tr>
           <tr>
             <td>Urea</td>

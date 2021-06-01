@@ -38,6 +38,7 @@ const NewPatient = () => {
     smoke: false,
     chronicDiseases: false,
     middleEastern: false,
+    ethiopian: false
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -210,7 +211,7 @@ const NewPatient = () => {
                 </td>
               </tr>
               <tr >
-                <td className="category">HCT</td>
+                <td className="category">HCT (%)</td>
                 <td className="value-inp">
                   <input
                     type="number"
@@ -220,6 +221,7 @@ const NewPatient = () => {
                     value={patient.HCT}
                     onChange={handleChange}
                     min="1"
+                    max="100"
                   ></input>
                 </td>
               </tr>
@@ -426,6 +428,28 @@ const NewPatient = () => {
                     type="radio"
                     className="radio-input"
                     name="middleEastern"
+                    value={false}
+                    onChange={handleChange}
+                    defaultChecked
+                  ></input>
+                </td>
+              </tr>
+              <tr>
+                <td className="question">Are you Ethiopian?</td>
+                <td className="radio-col">
+                  <input
+                    type="radio"
+                    className="radio-input"
+                    name="ethiopian"
+                    value={true}
+                    onChange={handleChange}
+                  ></input>
+                </td>
+                <td className="radio-col">
+                  <input
+                    type="radio"
+                    className="radio-input"
+                    name="ethiopian"
                     value={false}
                     onChange={handleChange}
                     defaultChecked

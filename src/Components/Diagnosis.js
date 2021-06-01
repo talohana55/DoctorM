@@ -96,7 +96,7 @@ const Diagnosis = (props) => {
         </tr>
         <tr>
           <td className="category">HCT</td>
-          <td className="values">{props.value.HCT}</td>
+          <td className="values">{props.value.HCT}%</td>
           <td className="values">{HCT_Results}</td>
         </tr>
         <tr>

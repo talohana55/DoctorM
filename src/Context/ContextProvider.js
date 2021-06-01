@@ -31,6 +31,7 @@ const ContextProvider = ({ children }) => {
           smoke: false,
           chronicDiseases: false,
           middleEastern: false,
+          ethiopian: true,
         },
         {
           patientName: "Shimrit Cohen",
@@ -53,6 +54,8 @@ const ContextProvider = ({ children }) => {
           smoke: true,
           chronicDiseases: false,
           middleEastern: true,
+          ethiopian: false,
+
         },
       ],
     },
@@ -84,6 +87,8 @@ const ContextProvider = ({ children }) => {
           smoke: false,
           chronicDiseases: false,
           middleEastern: false,
+          ethiopian: false,
+
         },
         {
           patientName: "Mira Azrayev",
@@ -106,6 +111,8 @@ const ContextProvider = ({ children }) => {
           smoke: true,
           chronicDiseases: false,
           middleEastern: true,
+          ethiopian: false,
+
         },
       ],
     },
@@ -432,13 +439,15 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    } else if (patient.Urea >= 17 && patient.Urea <= 43) {
+    }
+    else if (patient.Urea >= 17 && patient.Urea <= 43) {
       result = "Good";
     } else if (patient.Urea < 17) {
       result = "Low";
     } else {
       result = "High";
     }
+
     if (result === "Low") {
       return "Malnutrition, low-protein diet or liver disease. It should be noted that during pregnancy the level of urination decreases.";
     } else if (result === "High") {
@@ -449,25 +458,26 @@ const ContextProvider = ({ children }) => {
   };
   const testHb = (patient) => {
     let result = "";
-    if (patient.gender === "male") {
-      if (patient.age >= 0 && patient.age <= 17) {
-        if (patient.Hb >= 11.5 && patient.Hb <= 15.5) {
-          result = "Good";
-        } else if (patient.Hb < 11.5) {
-          result = "Low";
-        } else {
-          result = "High";
-        }
+    if (patient.age >= 0 && patient.age <= 17) {
+      if (patient.Hb >= 11.5 && patient.Hb <= 15.5) {
+        result = "Good";
+      } else if (patient.Hb < 11.5) {
+        result = "Low";
       } else {
-        if (patient.Hb >= 12 && patient.Hb <= 18) {
-          result = "Good";
-        } else if (patient.Hb < 12) {
-          result = "Low";
-        } else {
-          result = "High";
-        }
+        result = "High";
       }
-    } else {
+    }
+    else if (patient.gender === "male") {
+
+      if (patient.Hb >= 12 && patient.Hb <= 18) {
+        result = "Good";
+      } else if (patient.Hb < 12) {
+        result = "Low";
+      } else {
+        result = "High";
+      }
+    }
+    else {
       if (patient.Hb >= 12 && patient.Hb <= 16) {
         result = "Good";
       } else if (patient.Hb < 12) {
@@ -478,15 +488,12 @@ const ContextProvider = ({ children }) => {
     }
     if (result === "Low") {
       return "Indicates anemia. This can be due to a hematologic disorder, iron deficiency and bleeding.";
-    } else if (result === "High") {
-      return "Good";
     } else {
       return "Good";
     }
   };
   const testCRT = (patient) => {
     let result = "";
-
     let crt = parseInt(patient.CRT).toFixed(1);
     if (patient.age >= 0 && patient.age <= 2) {
       if (crt >= 0.2 && crt <= 0.5) {
@@ -541,7 +548,8 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    } else {
+    }
+    else {
       if (patient.Iron >= fmaleMinVal && patient.Iron <= fmaleMaxVal) {
         result = "Good";
       } else if (patient.Iron < fmaleMinVal) {
@@ -560,21 +568,45 @@ const ContextProvider = ({ children }) => {
   };
   const testHDL = (patient) => {
     let result = "";
-    if (patient.gender === "male") {
-      if (patient.Iron >= 29 && patient.Iron <= 62) {
-        result = "Good";
-      } else if (patient.Iron < 29) {
-        result = "Low";
+    let ethiopianMaleMinVal = 34;
+    let ethiopianMaleMaxVal = 74;
+    let ethiopianFemaleMinVal = 41;
+    let ethiopianFemaleMaxVal = 98;
+    if (patient.ethiopian) {
+      if (patient.gender === "male") {
+        if (patient.HDL >= ethiopianMaleMinVal && patient.HDL <= ethiopianMaleMaxVal) {
+          result = "Good";
+        } else if (patient.HDL < ethiopianMaleMinVal) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       } else {
-        result = "High";
+        if (patient.HDL >= ethiopianFemaleMinVal && patient.HDL <= ethiopianFemaleMaxVal) {
+          result = "Good";
+        } else if (patient.HDL < ethiopianFemaleMinVal) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       }
     } else {
-      if (patient.Iron >= 34 && patient.Iron <= 82) {
-        result = "Good";
-      } else if (patient.Iron < 34) {
-        result = "Low";
+      if (patient.gender === "male") {
+        if (patient.HDL >= 29 && patient.HDL <= 62) {
+          result = "Good";
+        } else if (patient.HDL < 29) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       } else {
-        result = "High";
+        if (patient.HDL >= 34 && patient.HDL <= 82) {
+          result = "Good";
+        } else if (patient.HDL < 34) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       }
     }
     if (result === "Low") {
@@ -613,6 +645,7 @@ const ContextProvider = ({ children }) => {
     }
   };
   const getValue_WBC = (patient) => {
+
     let wbc = patient.WBC;
     let result = "";
     if (patient.age >= 18) {
@@ -651,8 +684,8 @@ const ContextProvider = ({ children }) => {
     return result;
   };
   const getValue_Neutrophil = (patient) => {
-    let minVal = (patient.Neut * 28) / 100;
-    let maxVal = (patient.Neut * 54) / 100;
+    let minVal = (patient.wbc * 28) / 100;
+    let maxVal = (patient.wbc * 54) / 100;
     let result = "";
     if (patient.Neut >= minVal && patient.Neut <= maxVal) {
       result = "Good";
@@ -668,8 +701,8 @@ const ContextProvider = ({ children }) => {
     return result;
   };
   const getValue_Lymph = (patient) => {
-    let minVal = (patient.Lymph * 36) / 100;
-    let maxVal = (patient.Lymph * 52) / 100;
+    let minVal = (patient.wbc * 36) / 100;
+    let maxVal = (patient.wbc * 52) / 100;
     let result = "";
     if (patient.Lymph >= minVal && patient.Lymph <= maxVal) {
       result = "Good";
@@ -697,15 +730,11 @@ const ContextProvider = ({ children }) => {
     return result;
   };
   const getValue_HCT = (patient) => {
-    let maleMinVal = (patient.HCT * 37) / 100;
-    let maleMaxVal = (patient.HCT * 54) / 100;
-    let fmaleMinVal = (patient.HCT * 33) / 100;
-    let fmaleMaxVal = (patient.HCT * 47) / 100;
     let result = "";
     if (patient.gender === "male") {
-      if (patient.HCT >= maleMinVal && patient.HCT <= maleMaxVal) {
+      if (patient.HCT >= 37 && patient.HCT <= 54) {
         result = "Good";
-      } else if (patient.HCT < maleMinVal) {
+      } else if (patient.HCT < 37) {
         result = "Low";
         addToPersonalDisease("Anemia");
         addToPersonalDisease("Bleeding");
@@ -713,9 +742,9 @@ const ContextProvider = ({ children }) => {
         result = "High";
       }
     } else {
-      if (patient.HCT >= fmaleMinVal && patient.HCT <= fmaleMaxVal) {
+      if (patient.HCT >= 33 && patient.HCT <= 47) {
         result = "Good";
-      } else if (patient.HCT < fmaleMinVal) {
+      } else if (patient.HCT < 33) {
         result = "Low";
       } else {
         result = "High";
@@ -742,32 +771,35 @@ const ContextProvider = ({ children }) => {
       result = "Good";
     } else if (patient.Urea < 17) {
       result = "Low";
+      addToPersonalDisease("Liver disease");
     } else {
       result = "High";
+      addToPersonalDisease("Dehydration");
+      addToPersonalDisease("Kidney disease");
     }
     return result;
   };
   const getValue_Hb = (patient) => {
     let result = "";
-    if (patient.gender === "male") {
-      if (patient.age >= 0 && patient.age <= 17) {
-        if (patient.Hb >= 11.5 && patient.Hb <= 15.5) {
-          result = "Good";
-        } else if (patient.Hb < 11.5) {
-          result = "Low";
-        } else {
-          result = "High";
-        }
+    if (patient.age >= 0 && patient.age <= 17) {
+      if (patient.Hb >= 11.5 && patient.Hb <= 15.5) {
+        result = "Good";
+      } else if (patient.Hb < 11.5) {
+        result = "Low";
       } else {
-        if (patient.Hb >= 12 && patient.Hb <= 18) {
-          result = "Good";
-        } else if (patient.Hb < 12) {
-          result = "Low";
-        } else {
-          result = "High";
-        }
+        result = "High";
       }
-    } else {
+    }
+    else if (patient.gender === "male") {
+      if (patient.Hb >= 12 && patient.Hb <= 18) {
+        result = "Good";
+      } else if (patient.Hb < 12) {
+        result = "Low";
+      } else {
+        result = "High";
+      }
+    }
+    else {
       if (patient.Hb >= 12 && patient.Hb <= 16) {
         result = "Good";
       } else if (patient.Hb < 12) {
@@ -858,21 +890,45 @@ const ContextProvider = ({ children }) => {
   };
   const getValue_HDL = (patient) => {
     let result = "";
-    if (patient.gender === "male") {
-      if (patient.Iron >= 29 && patient.Iron <= 62) {
-        result = "Good";
-      } else if (patient.Iron < 29) {
-        result = "Low";
+    let ethiopianMaleMinVal = 34;
+    let ethiopianMaleMaxVal = 74;
+    let ethiopianFemaleMinVal = 41;
+    let ethiopianFemaleMaxVal = 98;
+    if (patient.ethiopian) {
+      if (patient.gender === "male") {
+        if (patient.HDL >= ethiopianMaleMinVal && patient.HDL <= ethiopianMaleMaxVal) {
+          result = "Good";
+        } else if (patient.HDL < ethiopianMaleMinVal) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       } else {
-        result = "High";
+        if (patient.HDL >= ethiopianFemaleMinVal && patient.HDL <= ethiopianFemaleMaxVal) {
+          result = "Good";
+        } else if (patient.HDL < ethiopianFemaleMinVal) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       }
     } else {
-      if (patient.Iron >= 34 && patient.Iron <= 82) {
-        result = "Good";
-      } else if (patient.Iron < 34) {
-        result = "Low";
+      if (patient.gender === "male") {
+        if (patient.HDL >= 29 && patient.HDL <= 62) {
+          result = "Good";
+        } else if (patient.HDL < 29) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       } else {
-        result = "High";
+        if (patient.HDL >= 34 && patient.HDL <= 82) {
+          result = "Good";
+        } else if (patient.HDL < 34) {
+          result = "Low";
+        } else {
+          result = "High";
+        }
       }
     }
     if (result === "Low") {
