@@ -6,7 +6,6 @@ import "jspdf-autotable";
 const Treatment = (props) => {
   const [loading, setLoading] = useState(true);
   const {
-    personalDiseases,
     getValue_WBC,
     getValue_Neutrophil,
     getValue_Lymph,
@@ -29,15 +28,28 @@ const Treatment = (props) => {
     margin: { horizontal: 10 },
     bodyStyles: { valign: "top" },
   });
-  for (let i = 1; i < personalDiseases.length; i++) {
+  if (!props.value.diseases) {
     doc.autoTable({
-      body: [[personalDiseases[i].name, personalDiseases[i].treatment]],
+      body: [["No Recomended Treatments"]],
       columnStyles: { 0: { halign: "left" } },
       styles: {
         halign: "right",
         cellPadding: 0.7,
       },
     });
+  } else {
+    for (let i = 1; i < props.value.diseases.length; i++) {
+      doc.autoTable({
+        body: [
+          [props.value.diseases[i].name, props.value.diseases[i].treatment],
+        ],
+        columnStyles: { 0: { halign: "left" } },
+        styles: {
+          halign: "right",
+          cellPadding: 0.7,
+        },
+      });
+    }
   }
 
   getValue_WBC(props.value); //'Low'
@@ -54,9 +66,8 @@ const Treatment = (props) => {
   //doc.autoPrint();
   useEffect(() => {
     if (props.value) {
-      setLoading(false)
+      setLoading(false);
     }
-
   }, [props.value]);
   return (
     <div>
@@ -75,24 +86,28 @@ const Treatment = (props) => {
       >
         PDF
       </button>
-      {loading ? <h1>Loading....</h1> :
+      {loading ? (
+        <h1>Loading....</h1>
+      ) : (
         <table className="treatment-table" id="treat-table">
           <tr>
             <th>Disease</th>
             <th>Treatment Suggustion</th>
           </tr>
 
-          {personalDiseases.map((dis, i) => {
+          {props.value.diseases.length > 1 ? (props.value.diseases.map((dis, i) => {
             return (
               <tr key={i}>
                 <td className="category">{dis.name}</td>
                 <td className="values">{dis.treatment}</td>
               </tr>
             );
-          })}
+          })
+          ) : (
+            <span style={{ color: "red" }}> No Recomended Treatments</span>
+          )}
         </table>
-      }
-
+      )}
     </div>
   );
 };

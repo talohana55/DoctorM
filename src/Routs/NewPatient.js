@@ -42,10 +42,25 @@ const NewPatient = () => {
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPatient({
-      ...patient,
-      [name]: value,
-    });
+    if (e.target.type === 'number') {
+      if (e.target.name === 'CRT') {
+        setPatient({
+          ...patient,
+          [name]: parseFloat(value),
+        });
+      }
+      else {
+        setPatient({
+          ...patient,
+          [name]: parseInt(value),
+        });
+      }
+    } else {
+      setPatient({
+        ...patient,
+        [name]: value,
+      });
+    }
     setError(false);
   };
 

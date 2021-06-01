@@ -32,6 +32,10 @@ const ContextProvider = ({ children }) => {
           chronicDiseases: false,
           middleEastern: false,
           ethiopian: true,
+          diseases: [{
+            name: "",
+            treatment: "",
+          }]
         },
         {
           patientName: "Shimrit Cohen",
@@ -55,7 +59,37 @@ const ContextProvider = ({ children }) => {
           chronicDiseases: false,
           middleEastern: true,
           ethiopian: false,
-
+          diseases: [{
+            name: "",
+            treatment: "",
+          }]
+        },
+        {
+          patientName: "Dese Avera",
+          id: "412486456",
+          age: 22,
+          gender: "fmale",
+          WBC: 4600,
+          Neut: 1380,
+          Lymph: 1840,
+          RBC: 5,
+          HCT: 40,
+          Urea: 20,
+          Hb: 16,
+          CRT: 0.7,
+          Iron: 100,
+          HDL: 55,
+          AP: 90,
+          surgerie: false,
+          sensitivity: false,
+          smoke: false,
+          chronicDiseases: false,
+          middleEastern: false,
+          ethiopian: true,
+          diseases: [{
+            name: "",
+            treatment: "",
+          }]
         },
       ],
     },
@@ -88,7 +122,10 @@ const ContextProvider = ({ children }) => {
           chronicDiseases: false,
           middleEastern: false,
           ethiopian: false,
-
+          diseases: [{
+            name: "",
+            treatment: "",
+          }]
         },
         {
           patientName: "Mira Azrayev",
@@ -112,7 +149,10 @@ const ContextProvider = ({ children }) => {
           chronicDiseases: false,
           middleEastern: true,
           ethiopian: false,
-
+          diseases: [{
+            name: "",
+            treatment: "",
+          }]
         },
       ],
     },
@@ -227,21 +267,15 @@ const ContextProvider = ({ children }) => {
       treatment: "Coordinate an appointment with a nutritionist",
     },
   ]);
-  const [personalDiseases, setPersonalDiseases] = useState([
-    {
-      name: "",
-      treatment: "",
-    },
-  ]);
-  const addToPersonalDisease = (DiseaseName) => {
+
+  const addToPersonalDisease = (DiseaseName, patient) => {
     let obj = {};
-    let index = diseases.findIndex((obj) => DiseaseName === obj.name);
+    let index = diseases.findIndex((x) => DiseaseName === x.name);
     obj = diseases[index];
-    if (!personalDiseases.some((item) => DiseaseName === item.name)) {
-      let temp = [...personalDiseases, obj];
-      setPersonalDiseases(temp);
+    if (!patient.diseases.some((item) => DiseaseName === item.name)) {
+      let temp = [...patient.diseases, obj];
+      patient.diseases = temp;
     }
-    console.table(personalDiseases);
   };
   const [currentDoctor, setCurrentDoctor] = useState(null);
 
@@ -346,8 +380,8 @@ const ContextProvider = ({ children }) => {
     }
   };
   const testNeutrophil = (patient) => {
-    let minVal = (patient.wbc * 28) / 100;
-    let maxVal = (patient.wbc * 54) / 100;
+    let minVal = (patient.WBC * 28) / 100;
+    let maxVal = (patient.WBC * 54) / 100;
     let result = "";
     if (patient.Neut >= minVal && patient.Neut <= maxVal) {
       result = "Good";
@@ -365,8 +399,8 @@ const ContextProvider = ({ children }) => {
     }
   };
   const testLymph = (patient) => {
-    let minVal = (patient.wbc * 36) / 100;
-    let maxVal = (patient.wbc * 52) / 100;
+    let minVal = (patient.WBC * 36) / 100;
+    let maxVal = (patient.WBC * 52) / 100;
     let result = "";
     if (patient.Lymph >= minVal && patient.Lymph <= maxVal) {
       result = "Good";
@@ -439,8 +473,7 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    }
-    else if (patient.Urea >= 17 && patient.Urea <= 43) {
+    } else if (patient.Urea >= 17 && patient.Urea <= 43) {
       result = "Good";
     } else if (patient.Urea < 17) {
       result = "Low";
@@ -466,9 +499,7 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    }
-    else if (patient.gender === "male") {
-
+    } else if (patient.gender === "male") {
       if (patient.Hb >= 12 && patient.Hb <= 18) {
         result = "Good";
       } else if (patient.Hb < 12) {
@@ -476,8 +507,7 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    }
-    else {
+    } else {
       if (patient.Hb >= 12 && patient.Hb <= 16) {
         result = "Good";
       } else if (patient.Hb < 12) {
@@ -494,7 +524,7 @@ const ContextProvider = ({ children }) => {
   };
   const testCRT = (patient) => {
     let result = "";
-    let crt = parseInt(patient.CRT).toFixed(1);
+    let crt = patient.CRT.toFixed(1);
     if (patient.age >= 0 && patient.age <= 2) {
       if (crt >= 0.2 && crt <= 0.5) {
         result = "Good";
@@ -548,8 +578,7 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    }
-    else {
+    } else {
       if (patient.Iron >= fmaleMinVal && patient.Iron <= fmaleMaxVal) {
         result = "Good";
       } else if (patient.Iron < fmaleMinVal) {
@@ -574,7 +603,10 @@ const ContextProvider = ({ children }) => {
     let ethiopianFemaleMaxVal = 98;
     if (patient.ethiopian) {
       if (patient.gender === "male") {
-        if (patient.HDL >= ethiopianMaleMinVal && patient.HDL <= ethiopianMaleMaxVal) {
+        if (
+          patient.HDL >= ethiopianMaleMinVal &&
+          patient.HDL <= ethiopianMaleMaxVal
+        ) {
           result = "Good";
         } else if (patient.HDL < ethiopianMaleMinVal) {
           result = "Low";
@@ -582,7 +614,10 @@ const ContextProvider = ({ children }) => {
           result = "High";
         }
       } else {
-        if (patient.HDL >= ethiopianFemaleMinVal && patient.HDL <= ethiopianFemaleMaxVal) {
+        if (
+          patient.HDL >= ethiopianFemaleMinVal &&
+          patient.HDL <= ethiopianFemaleMaxVal
+        ) {
           result = "Good";
         } else if (patient.HDL < ethiopianFemaleMinVal) {
           result = "Low";
@@ -645,7 +680,6 @@ const ContextProvider = ({ children }) => {
     }
   };
   const getValue_WBC = (patient) => {
-
     let wbc = patient.WBC;
     let result = "";
     if (patient.age >= 18) {
@@ -674,35 +708,35 @@ const ContextProvider = ({ children }) => {
       }
     }
     if (result === "High") {
-      addToPersonalDisease("Cancer");
-      addToPersonalDisease("Dedicated");
-      addToPersonalDisease("Blood disease");
+      addToPersonalDisease("Cancer", patient);
+      addToPersonalDisease("Dedicated", patient);
+      addToPersonalDisease("Blood disease", patient);
     } else if (result === "Low") {
-      addToPersonalDisease("Cancer");
-      addToPersonalDisease("Viral disease");
+      addToPersonalDisease("Cancer", patient);
+      addToPersonalDisease("Viral disease", patient);
     }
     return result;
   };
   const getValue_Neutrophil = (patient) => {
-    let minVal = (patient.wbc * 28) / 100;
-    let maxVal = (patient.wbc * 54) / 100;
+    let minVal = (patient.WBC * 28) / 100;
+    let maxVal = (patient.WBC * 54) / 100;
     let result = "";
     if (patient.Neut >= minVal && patient.Neut <= maxVal) {
       result = "Good";
     } else if (patient.Neut < minVal) {
       result = "Low";
-      addToPersonalDisease("Disorder of blood formation / blood cells");
-      addToPersonalDisease("Dedicated");
-      addToPersonalDisease("Cancer");
+      addToPersonalDisease("Disorder of blood formation / blood cells", patient);
+      addToPersonalDisease("Dedicated", patient);
+      addToPersonalDisease("Cancer", patient);
     } else {
       result = "High";
-      addToPersonalDisease("Dedicated");
+      addToPersonalDisease("Dedicated", patient);
     }
     return result;
   };
   const getValue_Lymph = (patient) => {
-    let minVal = (patient.wbc * 36) / 100;
-    let maxVal = (patient.wbc * 52) / 100;
+    let minVal = (patient.WBC * 36) / 100;
+    let maxVal = (patient.WBC * 52) / 100;
     let result = "";
     if (patient.Lymph >= minVal && patient.Lymph <= maxVal) {
       result = "Good";
@@ -710,8 +744,8 @@ const ContextProvider = ({ children }) => {
       result = "Low";
     } else {
       result = "High";
-      addToPersonalDisease("Dedicated");
-      addToPersonalDisease("Cancer");
+      addToPersonalDisease("Dedicated", patient);
+      addToPersonalDisease("Cancer", patient);
     }
     return result;
   };
@@ -721,11 +755,11 @@ const ContextProvider = ({ children }) => {
       result = "Good";
     } else if (patient.RBC < 4.5) {
       result = "Low";
-      addToPersonalDisease("Anemia");
-      addToPersonalDisease("Bleeding");
+      addToPersonalDisease("Anemia", patient);
+      addToPersonalDisease("Bleeding", patient);
     } else {
       result = "High";
-      addToPersonalDisease("Lung Disease");
+      addToPersonalDisease("Lung Disease", patient);
     }
     return result;
   };
@@ -736,8 +770,8 @@ const ContextProvider = ({ children }) => {
         result = "Good";
       } else if (patient.HCT < 37) {
         result = "Low";
-        addToPersonalDisease("Anemia");
-        addToPersonalDisease("Bleeding");
+        addToPersonalDisease("Anemia", patient);
+        addToPersonalDisease("Bleeding", patient);
       } else {
         result = "High";
       }
@@ -761,21 +795,21 @@ const ContextProvider = ({ children }) => {
         result = "Good";
       } else if (patient.Urea < minVal) {
         result = "Low";
-        addToPersonalDisease("Liver disease");
+        addToPersonalDisease("Liver disease", patient);
       } else {
         result = "High";
-        addToPersonalDisease("Dehydration");
-        addToPersonalDisease("Kidney disease");
+        addToPersonalDisease("Dehydration", patient);
+        addToPersonalDisease("Kidney disease", patient);
       }
     } else if (patient.Urea >= 17 && patient.Urea <= 43) {
       result = "Good";
     } else if (patient.Urea < 17) {
       result = "Low";
-      addToPersonalDisease("Liver disease");
+      addToPersonalDisease("Liver disease", patient);
     } else {
       result = "High";
-      addToPersonalDisease("Dehydration");
-      addToPersonalDisease("Kidney disease");
+      addToPersonalDisease("Dehydration", patient);
+      addToPersonalDisease("Kidney disease", patient);
     }
     return result;
   };
@@ -789,8 +823,7 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    }
-    else if (patient.gender === "male") {
+    } else if (patient.gender === "male") {
       if (patient.Hb >= 12 && patient.Hb <= 18) {
         result = "Good";
       } else if (patient.Hb < 12) {
@@ -798,8 +831,7 @@ const ContextProvider = ({ children }) => {
       } else {
         result = "High";
       }
-    }
-    else {
+    } else {
       if (patient.Hb >= 12 && patient.Hb <= 16) {
         result = "Good";
       } else if (patient.Hb < 12) {
@@ -809,16 +841,16 @@ const ContextProvider = ({ children }) => {
       }
     }
     if (result === "Low") {
-      addToPersonalDisease("Anemia");
-      addToPersonalDisease("Bleeding");
-      addToPersonalDisease("Hematologic Disorder");
-      addToPersonalDisease("Iron deficiency");
+      addToPersonalDisease("Anemia", patient);
+      addToPersonalDisease("Bleeding", patient);
+      addToPersonalDisease("Hematologic Disorder", patient);
+      addToPersonalDisease("Iron deficiency", patient);
     }
     return result;
   };
   const getValue_CRT = (patient) => {
     let result = "";
-    let crt = parseInt(patient.CRT).toFixed(1);
+    let crt = patient.CRT.toFixed(1);
     if (patient.age >= 0 && patient.age <= 2) {
       if (crt >= 0.2 && crt <= 0.5) {
         result = "Good";
@@ -853,10 +885,10 @@ const ContextProvider = ({ children }) => {
       }
     }
     if (result === "High") {
-      addToPersonalDisease("Muscle diseases");
-      addToPersonalDisease("Increased consumption of meat");
+      addToPersonalDisease("Muscle diseases", patient);
+      addToPersonalDisease("Increased consumption of meat", patient);
     } else if (result === "Low") {
-      addToPersonalDisease("Malnutrition");
+      addToPersonalDisease("Malnutrition", patient);
     }
     return result;
   };
@@ -882,9 +914,9 @@ const ContextProvider = ({ children }) => {
       }
     }
     if (result === "High") {
-      addToPersonalDisease("Iron deficiency");
+      addToPersonalDisease("Iron deficiency", patient);
     } else if (result === "Low") {
-      addToPersonalDisease("Bleeding");
+      addToPersonalDisease("Bleeding", patient);
     }
     return result;
   };
@@ -896,7 +928,10 @@ const ContextProvider = ({ children }) => {
     let ethiopianFemaleMaxVal = 98;
     if (patient.ethiopian) {
       if (patient.gender === "male") {
-        if (patient.HDL >= ethiopianMaleMinVal && patient.HDL <= ethiopianMaleMaxVal) {
+        if (
+          patient.HDL >= ethiopianMaleMinVal &&
+          patient.HDL <= ethiopianMaleMaxVal
+        ) {
           result = "Good";
         } else if (patient.HDL < ethiopianMaleMinVal) {
           result = "Low";
@@ -904,7 +939,10 @@ const ContextProvider = ({ children }) => {
           result = "High";
         }
       } else {
-        if (patient.HDL >= ethiopianFemaleMinVal && patient.HDL <= ethiopianFemaleMaxVal) {
+        if (
+          patient.HDL >= ethiopianFemaleMinVal &&
+          patient.HDL <= ethiopianFemaleMaxVal
+        ) {
           result = "Good";
         } else if (patient.HDL < ethiopianFemaleMinVal) {
           result = "Low";
@@ -932,8 +970,9 @@ const ContextProvider = ({ children }) => {
       }
     }
     if (result === "Low") {
-      addToPersonalDisease("Heart disease");
-      addToPersonalDisease("Adult diabetes Insulin");
+      addToPersonalDisease("Heart disease", patient);
+      addToPersonalDisease("Adult diabetes Insulin", patient);
+      addToPersonalDisease("Hyperlipidemia(blood lipids)", patient);
     }
     return result;
   };
@@ -957,11 +996,11 @@ const ContextProvider = ({ children }) => {
       }
     }
     if (result === "High") {
-      addToPersonalDisease("Diseases of the biliary tract");
-      addToPersonalDisease("Hypothyroidism Propylthiouracil");
-      addToPersonalDisease("Use of various medications");
+      addToPersonalDisease("Diseases of the biliary tract", patient);
+      addToPersonalDisease("Hypothyroidism Propylthiouracil", patient);
+      addToPersonalDisease("Use of various medications", patient);
     } else if (result === "Low") {
-      addToPersonalDisease("Vitamin Deficiency");
+      addToPersonalDisease("Vitamin Deficiency", patient);
     }
     return result;
   };
@@ -1000,7 +1039,6 @@ const ContextProvider = ({ children }) => {
         getValue_AP,
         diseases,
         setDiseases,
-        personalDiseases,
         checkIfPatientOnList,
         setCurrentDoctor,
       }}
