@@ -315,19 +315,19 @@ const ContextProvider = ({ children }) => {
       }
     } else if (patient.age >= 4 && patient.age <= 17) {
       if (wbc >= 5500 && wbc <= 15500) {
-        return "Good";
+        result = "Good";
       } else if (wbc < 5500) {
-        return "Low";
+        result = "Low";
       } else {
-        return "High";
+        result = "High";
       }
     } else {
       if (wbc >= 6000 && wbc <= 17500) {
-        return "Good";
+        result = "Good";
       } else if (wbc < 6000) {
-        return "Low";
+        result = "Low";
       } else {
-        return "High";
+        result = "High";
       }
     }
     if (result === "Low") {
