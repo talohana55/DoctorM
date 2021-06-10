@@ -300,11 +300,14 @@ const ContextProvider = ({ children }) => {
     let obj = {};
     let index = diseases.findIndex((x) => DiseaseName === x.name);
     obj = diseases[index];
-    if (!patient.diseases.some((item) => DiseaseName === item.name)) {
-      let temp = [...patient.diseases, obj];
-      patient.diseases = temp;
+    if (patient.diseases !== null) {
+      if (!patient.diseases.some((item) => DiseaseName === item.name)) {
+        let temp = [...patient.diseases, obj];
+        patient.diseases = temp;
+      }
     }
   };
+
   const [currentDoctor, setCurrentDoctor] = useState(null);
 
   const checkIfPatientOnList = (doc, pat) => {
